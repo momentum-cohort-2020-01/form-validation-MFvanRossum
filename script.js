@@ -1,24 +1,49 @@
 console.log('Add validation!');
 
 let el = document.querySelector('#parking-form');
+let inputInvalid = document.querySelectorAll('.input-field')
 
-el.addEventListener("submit", function(e){
-    console.log(el)
+el.addEventListener("submit", function (e) {
     e.preventDefault();
+    // Invalidate empty fields
     let inputFields = document.querySelectorAll('.input')
-    console.log(inputFields)
     for (let field of inputFields) {
-    console.log(field.value)
         if (field.value === '') {
-            field.parentNode.classList.add('input-invalid')
+            console.log('here')
+            field.parentElement.classList.add('input-invalid')
+            // Add "required" invalid fields
+            let children = field.parentElement.children
+            let hasP = false
+            for (let child of children) {
+                if (child.classList.contains('required')) {
+                    hasP = true
+                }    
+            }
+            if (hasP == false) {
+                let required = document.createElement('p')
+                required.innerText = '*Required'
+                required.classList.add('required')
+                field.parentElement.appendChild(required)
+            }
         }
-     }
+    }
 })
+
+
+// Add "required" message to invalid fields
+// let inputInvalid = document.querySelectorAll('.input-invalid')
+//      for (let field of inputFields) {
+//          if (inputInvalid == 'true')
+//          let required = docment.createElement('p')
+//          required.innerText = '*Required'
+//          required.classList.add('required')
+//          field.appendChild(required)
+//      })
 
 
 // function fieldRequired() {
 //     for (let element of document.querySelectorAll('.input-field')) {
-//     if (inputInvalid = 'true');
+//     if (inputInvalid === true);
 //     let required = document.createElement('p')
 //     required.innerText = '*Required'
 //     required.classList.add('required')
@@ -37,4 +62,5 @@ el.addEventListener("submit", function(e){
 
 // // emptyInvalid()
 // nameValid()
-// fieldRequired()
+// fieldRequired() 
+
