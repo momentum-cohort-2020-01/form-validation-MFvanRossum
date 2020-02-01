@@ -7,18 +7,25 @@ let inputFields = document.querySelectorAll('.input')
 let required = document.createElement('p')
 
 
-el.addEventListener('submit', function(e) {
+el.addEventListener('submit', function (e) {
     e.preventDefault();
-    // Name Field
+    validateName();
+    validateDays();
+    validateCreditCard();
+})
+
+
+// Name Field
+function validateName() {
     let name = document.querySelector('#name')
-    let nameParent = name.parentNode 
+    let nameParent = name.parentNode
     if (name.value !== '') {
         nameParent.classList.add('input-valid')
     } else {
         nameParent.classList.add('input-invalid')
-        let children = nameParent.children
+        let childrenName = nameParent.children
         let hasP = false
-        for (let child of children) {
+        for (let child of childrenName) {
             if (child.classList.contains('required')) {
                 hasP = true
             }
@@ -31,25 +38,27 @@ el.addEventListener('submit', function(e) {
     }
     if (nameParent.classList.contains('input-valid')) {
         if (nameParent.contains(required)) {
-        nameParent.removeChild(required)
+            nameParent.removeChild(required)
         }
     }
-    // Car Year
-    // let carYear = document.querySelector('#car-year') 
-    // if (carYear.value.match(numbers), carYear.value > 1900) {
-    //     carYear.classList.add('input-valid')
-    // } 
+}
+// Car Year
+// let carYear = document.querySelector('#car-year') 
+// if (carYear.value.match(numbers), carYear.value > 1900) {
+//     carYear.classList.add('input-valid')
+// } 
 
-    // Number of Days
+// Number of Days
+function validateDays() {
     let numDays = document.querySelector('#days')
     let daysParent = numDays.parentNode
     if (numDays.value.match(numbers), (numDays.value >= 1 && numDays.value <= 30)) {
         daysParent.classList.add('input-valid')
     } else {
         daysParent.classList.add('input-invalid')
-        let children = daysParent.children
+        let childrenDays = daysParent.children
         let hasP = false
-        for (let child of children) {
+        for (let child of childrenDays) {
             if (child.classList.contains('required')) {
                 hasP = true
             }
@@ -65,7 +74,36 @@ el.addEventListener('submit', function(e) {
             daysParent.removeChild(required)
         }
     }
-})
+}
+
+// Credit Card Number
+function validateCreditCard() {
+    let creditCard = document.querySelector('#credit-card')
+    let ccParent = creditCard.parentNode
+    if (creditCard.value.match(numbers) && creditCard.value.length == 16) {
+        ccParent.classList.add('input-valid')
+    } else {
+        ccParent.classList.add('input-invalid')
+        let childrenCC = ccParent.children
+        let hasP = false
+        for (let child of childrenCC) {
+            if (child.classList.contains('required')) {
+                hasP = true
+            }
+        }
+        if (hasP ==false) {
+            required.innerText = '*Required'
+            required.classList.add('required')
+            ccParent.appendChild(required)
+        }
+    }
+    if (ccParent.classList.contains('input-valid')) {
+        if (ccParent.contains(required)) {
+            ccParent.removeChild(required)
+        }
+    }
+}
+
 
 // el.addEventListener("submit", function (e) {
 //     e.preventDefault();
