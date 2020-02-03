@@ -9,12 +9,16 @@ let required = document.createElement('p')
 
 el.addEventListener('submit', function (e) {
     e.preventDefault();
+    let error = document.querySelectorAll('.required')
+    for (let element of error) {
+        console.log(required)
+        element.remove()
+    }
     validateName();
     validateDays();
     validateCreditCard();
     validateCVV();
 })
-
 
 // Name Field
 function validateName() {
@@ -32,16 +36,12 @@ function validateName() {
             }
         }
         if (hasP == false) {
+            let required = document.createElement('p')
             required.innerText = '*Required'
             required.classList.add('required')
             nameParent.appendChild(required)
         }
-    }
-    if (nameParent.classList.contains('input-valid')) {
-        if (nameParent.contains(required)) {
-            nameParent.removeChild(required)
-        }
-    }
+    }   
 }
 // Car Year
 // let carYear = document.querySelector('#car-year') 
@@ -65,14 +65,10 @@ function validateDays() {
             }
         }
         if (hasP == false) {
+            let required = document.createElement('p')
             required.innerText = '*Required'
             required.classList.add('required')
             daysParent.appendChild(required)
-        }
-    }
-    if (daysParent.classList.contains('input-valid')) {
-        if (daysParent.contains(required)) {
-            daysParent.removeChild(required)
         }
     }
 }
@@ -93,14 +89,10 @@ function validateCreditCard() {
             }
         }
         if (hasP == false) {
+            let required = document.createElement('p')
             required.innerText = '*Required'
             required.classList.add('required')
             ccParent.appendChild(required)
-        }
-    }
-    if (ccParent.classList.contains('input-valid')) {
-        if (ccParent.contains(required)) {
-            ccParent.removeChild(required)
         }
     }
 }
@@ -121,6 +113,7 @@ function validateCVV() {
             }
         }
         if (hasP == false) {
+            let required = document.createElement('p')
             required.innerText = '*Required'
             required.classList.add('required')
             cvvParent.appendChild(required)
@@ -185,4 +178,3 @@ function validateCVV() {
 //         }
 //     }
 // })
-
