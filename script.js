@@ -12,6 +12,7 @@ el.addEventListener('submit', function (e) {
     validateName();
     validateDays();
     validateCreditCard();
+    validateCVV();
 })
 
 
@@ -91,7 +92,7 @@ function validateCreditCard() {
                 hasP = true
             }
         }
-        if (hasP ==false) {
+        if (hasP == false) {
             required.innerText = '*Required'
             required.classList.add('required')
             ccParent.appendChild(required)
@@ -100,6 +101,34 @@ function validateCreditCard() {
     if (ccParent.classList.contains('input-valid')) {
         if (ccParent.contains(required)) {
             ccParent.removeChild(required)
+        }
+    }
+}
+
+// CCV
+function validateCVV() {
+    let cvv = document.querySelector('#cvv')
+    let cvvParent = cvv.parentNode
+    if (cvv.value.match(numbers) && cvv.value.length == 3) {
+        cvvParent.classList.add('input-valid')
+    } else {
+        cvvParent.classList.add('input-invalid')
+        let childrenCVV = cvvParent.children
+        let hasP = false
+        for (let child of childrenCVV) {
+            if (child.classList.contains('required')) {
+                hasP = true
+            }
+        }
+        if (hasP == false) {
+            required.innerText = '*Required'
+            required.classList.add('required')
+            cvvParent.appendChild(required)
+        }
+    }
+    if (cvvParent.classList.contains('input-valid')) {
+        if (cvvParent.contains(required)) {
+            cvvParent.removeChild(required)
         }
     }
 }
