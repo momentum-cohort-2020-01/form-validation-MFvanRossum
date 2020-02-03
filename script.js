@@ -5,16 +5,18 @@ let inputInvalid = document.querySelectorAll('.input-field')
 let numbers = /^[0-9]+$/
 let inputFields = document.querySelectorAll('.input')
 let required = document.createElement('p')
+let now = moment()
 
 
 el.addEventListener('submit', function (e) {
     e.preventDefault();
     let error = document.querySelectorAll('.required')
     for (let element of error) {
-        console.log(required)
         element.remove()
     }
     validateName();
+    validateCar();
+    // validateCarYear();
     validateDays();
     validateCreditCard();
     validateCVV();
@@ -43,11 +45,57 @@ function validateName() {
         }
     }   
 }
+
+// Car
+function validateCar() {
+    let car = document.querySelector('#car-field')
+    let carYear = document.querySelector('#car-year')
+    let carMake = document.querySelector('#car-make')
+    let carModel = document.querySelector('#car-model')
+    if (carYear.value !== '' && carMake.value !== '' && carModel.value !== '') {
+        car.classList.add('input-valid')
+    } else if (!carYear.value.match(numbers), carYear.value < 1900, now.isBefore(carYear.value)) {
+        car.classList.add('input-invalid')
+    } else {
+        car.classList.add('input-invalid')
+        let childrenCar = car.children
+        let hasP = false
+        for (let child of childrenCar) {
+            if (child.classList.contains('required')) {
+                hasP = true
+            }
+        }
+        if (hasP == false) {
+            let required = document.createElement('p')
+            required.innerText = '*Required'
+            required.classList.add('required')
+            car.appendChild(required)
+        }
+    } 
+}  
 // Car Year
-// let carYear = document.querySelector('#car-year') 
+// function validateCarYear() {
+// let carYear = document.querySelector('#year') 
+// let yearParent = carYear.parentNode
 // if (carYear.value.match(numbers), carYear.value > 1900) {
 //     carYear.classList.add('input-valid')
-// } 
+// } else {
+//     yearParent.classList.add('input-invalid')
+//     let childrenYear = yearParent.children
+//     let hasP = false
+//     for (let child of childrenYear) {
+//         if (child.classList.contains('required')) {
+//             hasP = true
+//         }
+//     }
+//     if (hasP == false) {
+//         let required = document.createElement('p')
+//         required.innerText = '*Required'
+//         required.classList.add('required')
+//         yearParent.appendChild(required)
+//     }
+//     }
+// }
 
 // Number of Days
 function validateDays() {
