@@ -16,7 +16,6 @@ el.addEventListener('submit', function (e) {
     }
     validateName();
     validateCar();
-    // validateCarYear();
     validateDays();
     validateCreditCard();
     validateCVV();
@@ -73,29 +72,7 @@ function validateCar() {
         }
     } 
 }  
-// Car Year
-// function validateCarYear() {
-// let carYear = document.querySelector('#year') 
-// let yearParent = carYear.parentNode
-// if (carYear.value.match(numbers), carYear.value > 1900) {
-//     carYear.classList.add('input-valid')
-// } else {
-//     yearParent.classList.add('input-invalid')
-//     let childrenYear = yearParent.children
-//     let hasP = false
-//     for (let child of childrenYear) {
-//         if (child.classList.contains('required')) {
-//             hasP = true
-//         }
-//     }
-//     if (hasP == false) {
-//         let required = document.createElement('p')
-//         required.innerText = '*Required'
-//         required.classList.add('required')
-//         yearParent.appendChild(required)
-//     }
-//     }
-// }
+
 
 // Number of Days
 function validateDays() {
