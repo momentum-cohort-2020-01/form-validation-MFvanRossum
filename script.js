@@ -16,6 +16,7 @@ el.addEventListener('submit', function (e) {
     }
     validateName();
     validateCar();
+    valiDate();
     validateDays();
     validateCreditCard();
     validateCVV();
@@ -72,6 +73,30 @@ function validateCar() {
         }
     } 
 }  
+
+// Parking Date
+function valiDate() {
+    let startDate = document.querySelector('#start-date') 
+    let dateParent = startDate.parentNode 
+    if (now.isBefore(startDate.value)) {
+        dateParent.classList.add('input-valid')
+    } else {
+        dateParent.classList.add('input-invalid')
+        let childrenDate = dateParent.children
+        let hasP = false
+        for (let child of childrenDate) {
+            if (child.classList.contains('required')) {
+                hasP = true
+            }
+        }
+        if (hasP == false) {
+            let required = document.createElement('p')
+            required.innerText = '*Required'
+            required.classList.add('required')
+            dateParent.appendChild(required)
+        }
+    }
+}
 
 
 // Number of Days
