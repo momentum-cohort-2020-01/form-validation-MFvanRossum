@@ -28,8 +28,10 @@ function validateName() {
     let nameParent = name.parentNode
     if (name.value !== '') {
         nameParent.classList.add('input-valid')
+        nameParent.classList.remove('input-invalid')
     } else {
         nameParent.classList.add('input-invalid')
+        nameParent.classList.remove('input-valid')
         let childrenName = nameParent.children
         let hasP = false
         for (let child of childrenName) {
@@ -54,10 +56,13 @@ function validateCar() {
     let carModel = document.querySelector('#car-model')
     if (carYear.value !== '' && carMake.value !== '' && carModel.value !== '') {
         car.classList.add('input-valid')
+        car.classList.remove('input-invalid')
     } else if (!carYear.value.match(numbers), carYear.value < 1900, now.isBefore(carYear.value)) {
         car.classList.add('input-invalid')
+        car.classList.remove('input-valid')
     } else {
         car.classList.add('input-invalid')
+        car.classList.remove('input-valid')
         let childrenCar = car.children
         let hasP = false
         for (let child of childrenCar) {
@@ -80,8 +85,10 @@ function valiDate() {
     let dateParent = startDate.parentNode 
     if (now.isBefore(startDate.value)) {
         dateParent.classList.add('input-valid')
+        dateParent.classList.remove('input-invalid')
     } else {
         dateParent.classList.add('input-invalid')
+        dateParent.classList.remove('input-valid')
         let childrenDate = dateParent.children
         let hasP = false
         for (let child of childrenDate) {
@@ -105,8 +112,10 @@ function validateDays() {
     let daysParent = numDays.parentNode
     if (numDays.value.match(numbers), (numDays.value >= 1 && numDays.value <= 30)) {
         daysParent.classList.add('input-valid')
+        daysParent.classList.remove('input-invalid')
     } else {
         daysParent.classList.add('input-invalid')
+        daysParent.classList.remove('input-valid')
         let childrenDays = daysParent.children
         let hasP = false
         for (let child of childrenDays) {
@@ -129,8 +138,10 @@ function validateCreditCard() {
     let ccParent = creditCard.parentNode
     if (creditCard.value.match(numbers) && creditCard.value.length == 16) {
         ccParent.classList.add('input-valid')
+        ccParent.classList.remove('input-invalid')
     } else {
         ccParent.classList.add('input-invalid')
+        ccParent.classList.remove('input-valid')
         let childrenCC = ccParent.children
         let hasP = false
         for (let child of childrenCC) {
@@ -153,8 +164,10 @@ function validateCVV() {
     let cvvParent = cvv.parentNode
     if (cvv.value.match(numbers) && cvv.value.length == 3) {
         cvvParent.classList.add('input-valid')
+        cvvParent.classList.remove('input-invalid')
     } else {
         cvvParent.classList.add('input-invalid')
+        cvvParent.classList.remove('input-valid')
         let childrenCVV = cvvParent.children
         let hasP = false
         for (let child of childrenCVV) {
